@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <meta property="og:title" content="Anytop: Character Animation Diffusion with Any Topology"/>
+    <meta property="og:title" content="AnyTop: Character Animation Diffusion with Any Topology"/>
     <meta property="og:url" content="https://Anytop2025.github.io/Anytop-page/"/>
     <meta property="og:image:width" content="1200"/>
     <meta property="og:image:height" content="630"/>
@@ -54,7 +54,7 @@
         <div class="container is-max-widescreen">
             <!-- <div class="columns is-centered"> -->
             <div class="column has-text-centered">
-                <h1 class="title is-1 publication-title">Anytop: Character Animation Diffusion with Any Topology</h1>
+                <h1 class="title is-1 publication-title">AnyTop: Character Animation Diffusion with Any Topology</h1>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
 -->
                     <div class="column has-text-centered">
                         <div class="is-size-4 publication-authors">
-                            <span class="author-block">Under review</span>
+                            <span class="author-block">Under Review</span>
                         </div>
                     </div>
                     
@@ -136,7 +136,6 @@
                     <source src="./static/videos/anytop_teaser/mesh2skeleton2mesh.mp4" type="video/mp4">
              </video>
             <h2 class="subtitle has-text-centered">
-                <!--<span class="sin-mdm">SinMDM</span>-->
                 Anytop generates motions for diverse characters with distinct motion dynamics, using only their skeletal structure as an input.
             </h2>
         </div>
@@ -171,15 +170,18 @@
                 <div class="content has-text-justified">
                     <p>
                         Generating motion for arbitrary skeletons is a longstanding challenge in
-                        computer graphics, remaining largely unexplored due to the scarcity of diverse datasets and the irregular nature of the data. 
-                        In this work, we introduce AnyTop, a diffusion model that generates motions for diverse characters
-                        with distinct motion dynamics, using only their skeletal structure as input. 
-                        Our work features a transformer-based denoising network, tailored for arbitrary skeleton learning, 
-                        integrating topology information into the traditional attention mechanism. Additionally, by incorporating textual joint
-                        descriptions into the latent feature representation, AnyTop learns semantic demonstrates that AnyTop generalizes well, 
-                        even with as few as three training examples per topology, and can produce motions for unseen skeletons as
+                        computer graphics, remaining largely unexplored due to the scarcity of diverse datasets and the irregular nature of the data. In this work, we introduce
+                        AnyTop, a diffusion model that generates motions for diverse characters
+                        with distinct motion dynamics, using only their skeletal structure as input. Our work features a transformer-based denoising network, tailored
+                        for arbitrary skeleton learning, integrating topology information into the
+                        traditional attention mechanism. Additionally, by incorporating textual joint
+                        descriptions into the latent feature representation, AnyTop learns semantic
+                        correspondences between joints across diverse skeletons. Our evaluation
+                        demonstrates that AnyTop generalizes well, even with as few as three train-
+                        ing examples per topology, and can produce motions for unseen skeletons as
                         well. Furthermore, our model's latent space is highly informative, enabling
                         downstream tasks such as joint correspondence and temporal segmentation.
+                        Our code and dataset will be shared. Please refer to the supplementary video.
                     </p>
                 </div>
             </div>
@@ -198,7 +200,7 @@
             </div>
             <div class="content">
                 <p>
-                        The input to AnyTop is a noised motion \( X_t\) and the skeleton \(S = { \mathcal{P}_\mathcal{S}, \mathcal{R}_\mathcal{S}, \mathcal{D}_\mathcal{S}, \mathcal{N}_\mathcal{S} }\), where \(\mathcal{P}_\mathcal{S} \) is the rest-pose, \(\mathcal{R}_\mathcal{S}\) is the joints relations,
+                        The input to AnyTop is a noised motion \( X_t\) and the skeleton \(S = \{ \mathcal{P}_\mathcal{S}, \mathcal{R}_\mathcal{S}, \mathcal{D}_\mathcal{S}, \mathcal{N}_\mathcal{S} \}\), where \(\mathcal{P}_\mathcal{S} \) is the rest-pose, \(\mathcal{R}_\mathcal{S}\) is the joints relations,
                         \(\mathcal{D}_\mathcal{S}\) is the topological distances between each pair of joints and \(\mathcal{N}_\mathcal{S}\) is the joints names. The Enrichment Block incorporates the skeletal features into the
                         noised motion by concatenating the embedded \(\mathcal{P}_\mathcal{S}\) to the sequence and adding a T5-embedded name to each joint. The enriched motion is then passed
                         through a stack of L Skeletal Temporal Transformer layers. We apply skeletal attention along the joint axis, capturing interactions between all joints, and
@@ -214,10 +216,10 @@
     <div class="hero-body">
         <div class="container is-max-desktop">
             <div class="column is-centered has-text-centered">
-                <h2 class="title is-3">Correspondence in latent space</h2>
+                <h2 class="title is-3">Correspondence in Latent Space</h2>
                 <div class="content has-text-justified">
                     <p>
-                        Anytop cross-skeleton manifold captures \(\textit{spatial}\) and \(\textit{temporal}\) correspondence, where functionally similar body parts and analogous actions and poses share similar latent representations.
+                        Anytop cross-skeleton manifold captures \(\textit{spatial}\) and \(\textit{temporal}\) correspondence, where semantically similar body parts and analogous actions and poses share similar latent representations.
                     </p>
                 </div>
             </div>
@@ -234,12 +236,12 @@
                 <div class="column is-centered has-text-centered">
                     <p><big><b>Spatial Correspondence</b></big></p>
                     <img src="static/figures/anytop_spatial_corr.png" width="75%">
-                    <p><small><b>Monkey (top left) is the reference skeleton, and all other skeletons' joints are colored-coded as their nearest neighbor joint in the monkey skeleton</b></small></p>
+                    <p><small><b>Monkey (top left) is the reference skeleton, and all other skeletons' joints are color-coded as their nearest neighbor joint in the monkey skeleton</b></small></p>
                 </div>
                 <div class="column is-centered has-text-centered">
                     <p><big><b>Temporal Correspondence</b></big></p>
                     <img src="static/figures/anytop_temporal_cor.png">
-                    <p><small><b>Monkey (top row) is the reference motion, and all other skeletons' poses are colored-coded as their nearest neighbor pose in the monkey's motion</b></small></p>
+                    <p><small><b>Monkey (top row) is the reference motion, and all other skeletons' poses are color-coded as their nearest neighbor pose in the monkey's motion</b></small></p>
                 </div>
             </div>
         </div>
@@ -506,23 +508,6 @@
 
 
 <!-- BibTeX -->
-
-
-<!-- section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-        <h2 class="title">BibTeX</h2>
-        <pre><code>
-            @inproceedings{raab2024single,
-            title={Single Motion Diffusion},
-            author={Raab, Sigal and Leibovitch, Inbal and Tevet, Guy and Arar, Moab and Bermano, Amit H and Cohen-Or, Daniel},
-            booktitle={The Twelfth International Conference on Learning Representations (ICLR)},        
-            url={https://openreview.net/pdf?id=DrhZneqz4n},
-            year={2024}
-            }
-        </code></pre>
-    </div>
-</section --> 
-
 
 <footer class="footer">
     <div class="container">
