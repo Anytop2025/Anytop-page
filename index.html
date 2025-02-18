@@ -206,7 +206,7 @@
                         The input to AnyTop is a noised motion \( X_t\) and the skeleton \(S = \{ \mathcal{P}_\mathcal{S}, \mathcal{R}_\mathcal{S}, \mathcal{D}_\mathcal{S}, \mathcal{N}_\mathcal{S} \}\), where \(\mathcal{P}_\mathcal{S} \) refers to the rest-pose, \(\mathcal{R}_\mathcal{S}\) denotes joints' relations,
                         \(\mathcal{D}_\mathcal{S}\) defines topological distances between each pair of joints and \(\mathcal{N}_\mathcal{S}\) denotes joint names. The Enrichment Block incorporates the skeletal features into the
                         noised motion by concatenating the embedded \(\mathcal{P}_\mathcal{S}\) to the sequence as an additional temporal token and adding a T5-embedded name to each joint. The enriched motion is then passed
-                        through a stack of L Skeletal Temporal Transformer layers. We apply skeletal attention along the joint axis, capturing interactions between all joints, and
+                        through a stack of L Skeletal Temporal Transformer layers. We apply skeletal attention along the joint axis to capture interactions between all joints, and
                         incorporate the topology information \(\mathcal{R}_\mathcal{S}\) and \(\mathcal{D}_\mathcal{S}\) to attention maps. Next, we apply temporal attention along the frame axis. Finally, the output is projected
                         back to the motion features dimension, facilitating the reconstruction of the motion sequence.                
                     </p>
@@ -319,7 +319,7 @@
                 <h2 class="title is-3">Cross-skeleton Genaralization</h2>
                 <div class="content has-text-justified">
                     <p>
-                        Generalization form manifested as common motion patterns across different skeletons, enabling the adaptation of motion behaviors originally performed by other skeletal structures.
+                        A form of generalization expressed through shared motion motifs across different characters, allowing the adaptation of motion behaviors originally performed by other skeletons.
                     </p>
                 </div>
             </div>
@@ -434,7 +434,7 @@
                 <div class="content has-text-justified">
                     <p>
                         We demonstrate our method's versatility through two motion editing applications: \(\textit{in-betweening editing}\) for temporal manipulation
-                        and \(\textit{body-part editing}\) for spatial modifications, both leveraging the same underlying approach. 
+                        and \(\textit{body-part editing}\) for spatial modifications.
                     </p>
                 </div>
             </div>
