@@ -183,11 +183,8 @@
                         traditional attention mechanism. Additionally, by incorporating textual joint
                         descriptions into the latent feature representation, AnyTop learns semantic
                         correspondences between joints across diverse skeletons. Our evaluation
-                        demonstrates that AnyTop generalizes well, even with as few as three train-
-                        ing examples per topology, and can produce motions for unseen skeletons as
-                        well. Furthermore, our model's latent space is highly informative, enabling
-                        downstream tasks such as joint correspondence and temporal segmentation.
-                        Our code and dataset will be shared. Please refer to the supplementary video.
+                        demonstrates that AnyTop generalizes well, even with as few as three training examples per topology, and can produce motions for unseen skeletons as
+                        well. Furthermore, our model's latent space is highly informative, enabling downstream tasks such as joint correspondence, temporal segmentation and motion editing.
                     </p>
                 </div>
             </div>
@@ -206,13 +203,13 @@
             </div>
             <div class="content">
                 <p>
-                        The input to AnyTop is a noised motion \( X_t\) and the skeleton \(S = \{ \mathcal{P}_\mathcal{S}, \mathcal{R}_\mathcal{S}, \mathcal{D}_\mathcal{S}, \mathcal{N}_\mathcal{S} \}\), where \(\mathcal{P}_\mathcal{S} \) is the rest-pose, \(\mathcal{R}_\mathcal{S}\) is the joints relations,
-                        \(\mathcal{D}_\mathcal{S}\) is the topological distances between each pair of joints and \(\mathcal{N}_\mathcal{S}\) is the joints names. The Enrichment Block incorporates the skeletal features into the
-                        noised motion by concatenating the embedded \(\mathcal{P}_\mathcal{S}\) to the sequence and adding a T5-embedded name to each joint. The enriched motion is then passed
+                        The input to AnyTop is a noised motion \( X_t\) and the skeleton \(S = \{ \mathcal{P}_\mathcal{S}, \mathcal{R}_\mathcal{S}, \mathcal{D}_\mathcal{S}, \mathcal{N}_\mathcal{S} \}\), where \(\mathcal{P}_\mathcal{S} \) refers to the rest-pose, \(\mathcal{R}_\mathcal{S}\) denotes joints' relations,
+                        \(\mathcal{D}_\mathcal{S}\) defines topological distances between each pair of joints and \(\mathcal{N}_\mathcal{S}\) denotes joint names. The Enrichment Block incorporates the skeletal features into the
+                        noised motion by concatenating the embedded \(\mathcal{P}_\mathcal{S}\) to the sequence as an additional temporal token and adding a T5-embedded name to each joint. The enriched motion is then passed
                         through a stack of L Skeletal Temporal Transformer layers. We apply skeletal attention along the joint axis, capturing interactions between all joints, and
-                        incorporate the topology information \(\mathcal{R}_\mathcal{S}\) and \(\mathcal{D}_\mathcal{S}\) to attention maps. Next, we apply temporal attention along the frames axis. Finally, the output is projected
-                        back to the motion features dimension, facilitating the reconstruction of the motion sequence.
-                </p>
+                        incorporate the topology information \(\mathcal{R}_\mathcal{S}\) and \(\mathcal{D}_\mathcal{S}\) to attention maps. Next, we apply temporal attention along the frame axis. Finally, the output is projected
+                        back to the motion features dimension, facilitating the reconstruction of the motion sequence.                
+                    </p>
             </div>
         </div>
     </div>
@@ -225,7 +222,7 @@
                 <h2 class="title is-3">Correspondence in Latent Space</h2>
                 <div class="content has-text-justified">
                     <p>
-                        AnyTop cross-skeleton manifold captures \(\textit{spatial}\) and \(\textit{temporal}\) correspondence, as semantically similar body parts and analogous actions across different skeletons share a similar latent representation. 
+                        AnyTop's cross-skeleton manifold enables the capture of both \(\textit{spatial}\) and \(\textit{temporal}\) correspondences, as semantically similar body parts and analogous poses across different skeletons exhibit similar latent representations. 
                     </p>
                 </div>
             </div>
@@ -242,12 +239,16 @@
                 <div class="column is-centered has-text-centered">
                     <p><big><b>Spatial Correspondence</b></big></p>
                     <img src="static/figures/anytop_spatial_corr.png" width="77%">
-                    <p><small><b>The monkey (top left) is the reference skeleton, and all other skeletons' joints are color-coded as their nearest neighbor joint in the monkey skeleton</b></small></p>
+                    <p><small><b>Monkey (top left) depicts the reference skeleton, while the fox, scorpion, and bird depict different target skeletons. 
+                        Target skeleton joints are color-coded to match their corresponding joints in the reference. 
+                        For better visualization, we color the bones to match their adjacent joints. 
+                        Note the correspondence in limbs, spine, and tail.</b></small></p>
                 </div>
                 <div class="column is-centered has-text-centered">
                     <p><big><b>Temporal Correspondence</b></big></p>
                     <img src="static/figures/anytop_temporal_cor.png">
-                    <p><small><b>The monkey (top row) is the reference motion, and all other skeletons' poses are color-coded as their nearest neighbor pose in the monkey's motion</b></small></p>
+                    <p><small><b>Monkey (top row) features the reference motion, while the Crab and Lynx represent two target motions. The frames of the targets are color-coded to align with their corresponding reference frames.
+                        Note the correspondence: aggressive motion segments are pink, idle frames blue, and transitional frames green.</b></small></p>
                 </div>
             </div>
         </div>
@@ -330,7 +331,7 @@
 <section class="hero is-small">
     <div class="hero-body">
         <div class="container is-max-desktop">
-            <div class="columns is-centered">
+            <!-- div class="columns is-centered">
                 <div class="column is-centered has-text-centered" style="margin-left: 20%;">
                     <p><big><b>Source Motion</b></big></p>
                     <video poster="" id="tree" playsinline autoplay muted loop>
@@ -354,7 +355,7 @@
                     <p><b><small>Chicken</small></b></p>
 
                 </div>
-            </div>
+            </div -->
 
             <div class="columns is-centered">
 
