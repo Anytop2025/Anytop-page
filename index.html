@@ -192,7 +192,111 @@
         <!--/ Abstract. -->
     </div>
 </section>
+<section class="video-gallery">
+    <div id="gallery"></div>
+    <div class="controls">
+        <button onclick="prevSlide()">&#10094;</button>
+        <button onclick="nextSlide()">&#10095;</button>
+    </div>
 
+
+    <div class="modal" id="modal" onclick="closeModal()">
+        <video id="modalVideo"  autoplay></video>
+    </div>
+    <script>
+        const videoSources = [
+            "./static/videos/generations/gallery/dinosOstrich_gallery.mp4", 
+            "./static/videos/generations/gallery/dinosRaptor_gallery.mp4", 
+            "./static/videos/generations/gallery/dinosTyranno_gallery.mp4", 
+            "./static/videos/generations/gallery/flyingsBat_gallery.mp4", 
+            "./static/videos/generations/gallery/flyingsBuzzard_gallery.mp4", 
+            "./static/videos/generations/gallery/flyingsDragon_gallery.mp4", 
+            "./static/videos/generations/gallery/insectsRoach_gallery.mp4", 
+            "./static/videos/generations/gallery/insectsScorpion_gallery.mp4", 
+            "./static/videos/generations/gallery/mammalsAlligator_gallery.mp4", 
+            "./static/videos/generations/gallery/mammalsFox_gallery.mp4", 
+            "./static/videos/generations/gallery/mammalsGazelle_gallery.mp4", 
+            "./static/videos/generations/gallery/mammalsMonkey_gallery.mp4"
+        ];
+        
+        const videoNames = [
+            "Ostrich",  
+            "Raptor",  
+            "Tyrannosaurus",  
+            "Bat",  
+            "Buzzard",  
+            "Dragon",  
+            "Roach",  
+            "Scorpion",  
+            "Alligator",  
+            "Fox",  
+            "Gazelle",  
+            "Monkey"
+        ];
+
+        let index = 0;
+        const videosPerView = 3;
+        const gallery = document.getElementById("gallery");
+
+        function updateGallery() {
+            gallery.innerHTML = "";
+            for (let i = 0; i < videosPerView; i++) {
+                let videoIndex = (index + i) % videoSources.length;
+                let videoWrapper = document.createElement("div");
+                videoWrapper.classList.add("video-container");
+                
+                let videoElement = document.createElement("video");
+                videoElement.src = videoSources[videoIndex];
+                videoElement.autoplay = true;
+                videoElement.loop = true;
+                videoElement.muted = true;
+
+                videoElement.oncontextmenu = () => false;
+
+                videoElement.onclick = () => openModal(videoIndex);
+                
+                let caption = document.createElement("p");
+                caption.textContent = videoNames[videoIndex];
+                
+                videoWrapper.appendChild(videoElement);
+                videoWrapper.appendChild(caption);
+                gallery.appendChild(videoWrapper);
+            }
+        }
+
+        function nextSlide() {
+            index = (index + 1) % videoSources.length;
+            updateGallery();
+        }
+
+        function prevSlide() {
+            index = (index - 1 + videoSources.length) % videoSources.length;
+            updateGallery();
+        }
+
+        function openModal(startIndex) {
+            const modal = document.getElementById("modal");
+            const modalVideo = document.getElementById("modalVideo");
+            
+            modalVideo.src = videoSources[startIndex];
+            modalVideo.controlsList = "nodownload";
+modalVideo.oncontextmenu = () => false;
+
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            const modalVideo = document.getElementById("modalVideo");
+            modal.style.display = "none";
+            modalVideo.pause();
+            modalVideo.src = ""; // Stop loading
+        }
+
+        updateGallery();
+        window.onload = () => setTimeout(updateGallery, 100);
+    </script>
+</section>
 
 <section class="hero is-small">
     <div class="hero-body">
