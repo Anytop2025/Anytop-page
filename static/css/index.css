@@ -149,20 +149,61 @@ body {
 .eql-cntrb { 
   font-size: smaller;
 }
-/*
-.container {
-  padding-top: 0px;
-  padding-bottom: 3rem;
 
+
+
+.video-gallery {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-*/
-
-/*#tree{*/
-/*  object-fit: initial;*/
-/*  width: 50%;*/
-/*}*/
-.tab {
-    display: inline-block;
-    margin-left: 1.5rem;
+.video-gallery #gallery {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+  transition: transform 0.5s ease-in-out;
+  position: relative;
 }
+
+.video-gallery .video-container {
+  text-align: center;
+  width: 20%;
+}
+
+.video-gallery video {
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.video-gallery #modalVideo {
+  width: 80%;
+  max-width: 800px;
+}
+
+.video-gallery .controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none; /* Prevent buttons from interfering with clicks on videos */
+}
+
+.video-gallery .controls button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 24px;
+  pointer-events: auto; /* Re-enable pointer events for the buttons */
+}
+
+.video-gallery .controls button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
