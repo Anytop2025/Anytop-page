@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-
+    <meta property="og:image" content="static/figures/social_media_icon.png" />
     <meta property="og:title" content="AnyTop: Character Animation Diffusion with Any Topology"/>
     <meta property="og:url" content="https://Anytop2025.github.io/Anytop-page/"/>
     <meta property="og:image:width" content="1200"/>
@@ -192,7 +192,8 @@
         <!--/ Abstract. -->
     </div>
 </section>
-<section class="video-gallery">
+<section class="video-gallery hero ">
+    <h2 class="title is-3">Generations</h2>
     <div id="gallery"></div>
     <div class="controls">
         <button onclick="prevSlide()">&#10094;</button>
@@ -206,7 +207,7 @@
     <script>
         const videoSources = [
         "./static/videos/gallery/flyingsBat_gallery.mp4", 
-        "./static/videos/gallery/dinosRaptor_gallery.mp4", 
+        "./static/videos/gallery/dinosTyranno_gallery.mp4",
         "./static/videos/gallery/insectsScorpion_gallery.mp4", 
         "./static/videos/gallery/flyingsDragon_gallery.mp4",
         "./static/videos/gallery/insectsRoach_gallery.mp4", 
@@ -215,8 +216,7 @@
         "./static/videos/gallery/mammalsMonkey_gallery.mp4",
         "./static/videos/gallery/mammalsAlligator_gallery.mp4", 
         "./static/videos/gallery/flyingsBuzzard_gallery.mp4", 
-        "./static/videos/gallery/dinosTyranno_gallery.mp4", 
-        "./static/videos/gallery/mammalsFox_gallery.mp4"
+        "./static/videos/gallery/dinosRaptor_gallery.mp4" 
         ];
         
         const videoNames = [
@@ -230,8 +230,7 @@
         "Monkey",
         "Alligator", 
         "Buzzard", 
-        "Tyrannosaurus",  
-        "Fox"
+        "Tyrannosaurus"
         ];
 
         let index = 0;
@@ -297,24 +296,31 @@ modalVideo.oncontextmenu = () => false;
         window.onload = () => setTimeout(updateGallery, 100);
     </script>
 </section>
-
-<section class="hero is-small">
+<section class="hero is-small is-light">
     <div class="hero-body">
         <div class="container is-max-desktop">
-            <div class="content has-text-centered">
-                <br><br>
+            <div class="column is-centered has-text-centered">
                 <h2 class="title is-3">Overview</h2>
-                <img src="static/figures/anytop_Architecture_overview.png">
-            </div>
-            <div class="content">
-                <p>
+                <div class="content has-text-justified">
+                    <p>
                         The input to AnyTop is a noised motion \( X_t\) and the skeleton \(S = \{ \mathcal{P}_\mathcal{S}, \mathcal{R}_\mathcal{S}, \mathcal{D}_\mathcal{S}, \mathcal{N}_\mathcal{S} \}\), where \(\mathcal{P}_\mathcal{S} \) refers to the rest-pose, \(\mathcal{R}_\mathcal{S}\) denotes joints' relations,
                         \(\mathcal{D}_\mathcal{S}\) defines topological distances between each pair of joints and \(\mathcal{N}_\mathcal{S}\) denotes joint names. The Enrichment Block incorporates the skeletal features into the
                         noised motion by concatenating the embedded \(\mathcal{P}_\mathcal{S}\) to the sequence as an additional temporal token and adding a T5-embedded name to each joint. The enriched motion is then passed
                         through a stack of L Skeletal Temporal Transformer layers. We apply skeletal attention along the joint axis to capture interactions between all joints, and
                         incorporate the topology information \(\mathcal{R}_\mathcal{S}\) and \(\mathcal{D}_\mathcal{S}\) to attention maps. Next, we apply temporal attention along the frame axis. Finally, the output is projected
-                        back to the motion features dimension, facilitating the reconstruction of the motion sequence.                
+                        back to the motion features dimension, facilitating the reconstruction of the motion sequence.  
                     </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="hero is-small">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="content has-text-centered">
+
+                <img src="static/figures/anytop_Architecture_overview.png">
             </div>
         </div>
     </div>
