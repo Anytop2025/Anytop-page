@@ -237,30 +237,38 @@
         let index = 0;
         const videosPerView = 3;
         const gallery = document.getElementById("gallery");
-
+        const videoElements = [];
+        
+        // Preload all videos once
+        function preloadVideos() {
+            videoSources.forEach((src, i) => {
+                const wrapper = document.createElement("div");
+                wrapper.classList.add("video-container");
+        
+                const video = document.createElement("video");
+                video.src = src;
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                video.oncontextmenu = () => false;
+                video.onclick = () => openModal(i);
+        
+                const caption = document.createElement("p");
+                caption.textContent = videoNames[i];
+        
+                wrapper.appendChild(video);
+                wrapper.appendChild(caption);
+                gallery.appendChild(wrapper);
+                videoElements.push(wrapper);
+            });
+        }
+        
+        // Only show 3 videos at a time
         function updateGallery() {
-            gallery.innerHTML = "";
+            videoElements.forEach((el) => el.classList.remove("active"));
             for (let i = 0; i < videosPerView; i++) {
                 let videoIndex = (index + i) % videoSources.length;
-                let videoWrapper = document.createElement("div");
-                videoWrapper.classList.add("video-container");
-                
-                let videoElement = document.createElement("video");
-                videoElement.src = videoSources[videoIndex];
-                videoElement.autoplay = true;
-                videoElement.loop = true;
-                videoElement.muted = true;
-
-                videoElement.oncontextmenu = () => false;
-
-                videoElement.onclick = () => openModal(videoIndex);
-                
-                let caption = document.createElement("p");
-                caption.textContent = videoNames[videoIndex];
-                
-                videoWrapper.appendChild(videoElement);
-                videoWrapper.appendChild(caption);
-                gallery.appendChild(videoWrapper);
+                videoElements[videoIndex].classList.add("active");
             }
         }
 
@@ -293,8 +301,8 @@ modalVideo.oncontextmenu = () => false;
             modalVideo.src = ""; // Stop loading
         }
 
+        preloadVideos();
         updateGallery();
-        window.onload = () => setTimeout(updateGallery, 100);
     </script>
 </section>
 <section class="hero is-small is-light">

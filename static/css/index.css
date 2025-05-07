@@ -161,7 +161,7 @@ body {
 
 .video-gallery #gallery {
   display: flex;
-  gap: 5px;
+  gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
   transition: transform 0.5s ease-in-out;
@@ -170,7 +170,13 @@ body {
 
 .video-gallery .video-container {
   text-align: center;
-  width: 17%;
+  width: 15%;
+  display: none;
+  flex-shrink: 0;
+}
+
+.video-gallery .video-container.active {
+  display: block;
 }
 
 .video-gallery video {
@@ -206,4 +212,3 @@ body {
 .video-gallery .controls button:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
-
